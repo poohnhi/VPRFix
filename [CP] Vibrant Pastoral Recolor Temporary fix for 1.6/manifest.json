@@ -1,0 +1,33 @@
+{
+	"Name": "Vibrant Pastoral Recolor Temporary fix for 1.6",
+	"Author": "Pooh",
+	"Version": "1.0.0",
+	"Description": "Temporary force the new 1.6 tilesheets to match VPR recolored from grapeponta.",
+	"UniqueID": "poohnhi.VPRTempFix",
+	"UpdateKeys": [ "Nexus:20698" ],
+	"ContentPackFor": {
+		"UniqueID": "Pathoschild.ContentPatcher"
+	},
+	"Dependencies": [
+		{
+			"UniqueID": "Pathoschild.SmallBeachFarm",
+			"IsRequired": false
+		},
+		{
+			"UniqueID": "grapeponta.VibrantPastoralRecolor",
+			"IsRequired": true
+		},
+		{
+			"UniqueID": "grapeponta.VibrantPastoralSVE",
+			"IsRequired": false
+		},
+		{
+			"UniqueID": "FlashShifter.StardewValleyExpandedCP",
+			"IsRequired": false
+		},
+		{
+			"UniqueID": "grapeponta.VanillaInteriors",
+			"IsRequired": false
+		}
+	]
+}

@@ -1,0 +1,27 @@
+{
+	"Format": "2.0.0",
+	"ConfigSchema": {
+		"Green Fall": {
+			"AllowValues": "true, false",
+			"Default": "true"
+		}
+	},
+	"Changes": [
+		// Maps
+		{
+			"LogName": "Outdoors",
+			"Action": "EditImage",
+			"Target": "Maps/spring_outdoorsTileSheet2, Maps/spring_outdoorTileSheet_extra, Maps/spring_island_tilesheet_1, Maps/summer_outdoorsTileSheet2, Maps/summer_outdoorTileSheet_extra, Maps/summer_island_tilesheet_1, Maps/fall_outdoorsTileSheet2, Maps/fall_outdoorTileSheet_extra, Maps/fall_island_tilesheet_1, Maps/winter_outdoorsTileSheet2, Maps/winter_outdoorTileSheet_extra, Maps/winter_island_tilesheet_1, ",
+			"FromFile": "assets/{{TargetWithoutPath}}.png",
+			"PatchMode": "Overlay"
+		},		
+		{
+			"LogName": "Outdoors Green Fall",
+			"Action": "EditImage",
+			"Target": "Maps/fall_outdoorTileSheet_extra, Maps/fall_outdoorsTileSheet2",
+			"FromFile": "assets/{{TargetWithoutPath}}_green.png",
+			"PatchMode": "Overlay",
+			"When": {"Green Fall": "true"}
+		}
+	]
+}
