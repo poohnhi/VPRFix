@@ -9,6 +9,10 @@
 			"AllowValues": "true, false",
 			"Default": "true"
 		},
+		"Mini Map Fix": {
+			"AllowValues": "true, false",
+			"Default": "true"
+		},
 		"Carpenter Window Fix": {
 			"AllowValues": "true, false",
 			"Default": "false"
@@ -28,6 +32,10 @@
 		"Green Rain Tree Fix": {
 			"AllowValues": "true, false",
 			"Default": "true"
+		},
+		"Bookseller Zone Shadow Fix": {
+			"AllowValues": "true, false",
+			"Default": "true"
 		}
 	},
 	"Changes": [
@@ -39,6 +47,35 @@
 			"FromFile": "assets/{{TargetWithoutPath}}.png",
 			"PatchMode": "Overlay",
 			"Priority": "Early"
+		},
+		{
+			"LogName": "Bookseller Zone Shadow Fix",
+			"Action": "EditImage",
+			"Target": "Maps/spring_outdoorsTileSheet2, Maps/summer_outdoorsTileSheet2, Maps/fall_outdoorsTileSheet2, Maps/winter_outdoorsTileSheet2",
+			"FromFile": "assets/{{TargetWithoutPath}}_shadow.png",
+			"ToArea": { "X": 112, "Y": 208, "Width": 144, "Height": 32 },
+			"PatchMode": "Overlay",
+			"Priority": "Late",
+			"When": {"Bookseller Zone Shadow Fix": "true"}
+		},
+		{
+			"LogName": "Map Fix",
+			"Action": "EditImage",
+			"Target": "LooseSprites/map, LooseSprites/map_summer, LooseSprites/map_fall, LooseSprites/map_winter, LooseSprites/Farm_ranching_map, LooseSprites/Farm_ranching_map_summer, LooseSprites/Farm_ranching_map_fall, LooseSprites/Farm_ranching_map_winter",
+			"FromFile": "assets/{{TargetWithoutPath}}.png",
+			"PatchMode": "Overlay",
+			"Priority": "Late",
+			// "When": {"HasMod |contains=": }
+			"When": {"Mini Map Fix": "true"}
+		},
+		{
+			"LogName": "Map Fix Green Fall",
+			"Action": "EditImage",
+			"Target": "LooseSprites/map_fall, LooseSprites/Farm_ranching_map_fall",
+			"FromFile": "assets/{{TargetWithoutPath}}_green.png",
+			"PatchMode": "Overlay",
+			"Priority": "Late",
+			"When": {"Green Fall": "true", "Mini Map Fix": "true"}
 		},
 		{
 			"LogName": "Outdoors Green Fall",
@@ -111,9 +148,19 @@
 			"Action": "EditImage",
 			"Target": "TerrainFeatures/tree1_greenRain, TerrainFeatures/tree1_greenRain_fall, TerrainFeatures/tree1_greenRain_winter, TerrainFeatures/tree2_greenRain, TerrainFeatures/tree2_greenRain_fall, TerrainFeatures/tree2_greenRain_winter, TerrainFeatures/tree3_greenRain, TerrainFeatures/tree3_greenRain_fall, TerrainFeatures/tree3_greenRain_winter",
 			"FromFile": "assets/{{TargetWithoutPath}}.png",
-			"PatchMode": "Overlay",
+			"PatchMode": "Replace",
 			"When": {"Green Rain Tree Fix": "true"},
 			"Priority": "Early"
 		}
+		// {
+		// 	"LogName": "Green Rain Bushes Recolor",
+		// 	"Action": "EditImage",
+		// 	"Target": "TileSheets/Objects_2",
+		// 	"PatchMode": "Overlay",
+		// 	"FromFile": "assets/{{TargetWithoutPath}}_{{season}}.png",
+		// 	// "When": {"Green Rain Bushes Recolor": "true"},
+		// 	"ToArea": { "X": 0, "Y": 80, "Width": 128, "Height": 32 },
+		// 	"Priority": "Early"
+		// }
 	]
 }
