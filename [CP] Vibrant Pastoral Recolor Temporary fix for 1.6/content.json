@@ -4,6 +4,14 @@
 		"Green Fall": {
 			"AllowValues": "true, false",
 			"Default": "true"
+		},
+		"Town Interior": {
+			"AllowValues": "true, false",
+			"Default": "true"
+		},
+		"Carpenter Window Fix": {
+			"AllowValues": "true, false",
+			"Default": "true"
 		}
 	},
 	"Changes": [
@@ -22,6 +30,22 @@
 			"FromFile": "assets/{{TargetWithoutPath}}_green.png",
 			"PatchMode": "Overlay",
 			"When": {"Green Fall": "true"}
+		},
+		{
+			"LogName": "Town Interior",
+			"Action": "EditImage",
+			"Target": "Maps/townInterior_2",
+			"FromFile": "assets/{{TargetWithoutPath}}.png",
+			"PatchMode": "Overlay",
+			"When": {"Town Interior": "true"}
+		},
+		{
+			"LogName": "Carpenter Window Fix",
+			"Action": "EditImage",
+			"Target": "Maps/spring_outdoorsTileSheet, Maps/summer_outdoorsTileSheet, Maps/fall_outdoorsTileSheet, Maps/winter_outdoorsTileSheet",
+			"FromFile": "assets/{{TargetWithoutPath}}.png",
+			"PatchMode": "Overlay",
+			"When": {"Carpenter Window Fix": "true"}
 		}
 	]
 }

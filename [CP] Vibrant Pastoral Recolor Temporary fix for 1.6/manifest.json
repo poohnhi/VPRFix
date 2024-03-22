@@ -1,7 +1,7 @@
 {
-	"Name": "Vibrant Pastoral Recolor Temporary fix for 1.6",
+	"Name": "VPR Temporary Fix for 1.6",
 	"Author": "Pooh",
-	"Version": "1.0.0",
+	"Version": "1.0.1",
 	"Description": "Temporary force the new 1.6 tilesheets to match VPR recolored from grapeponta.",
 	"UniqueID": "poohnhi.VPRTempFix",
 	"UpdateKeys": [ "Nexus:20698" ],
