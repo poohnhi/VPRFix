@@ -11,13 +11,21 @@
 		},
 		"Carpenter Window Fix": {
 			"AllowValues": "true, false",
-			"Default": "true"
+			"Default": "false"
 		},
 		"Desert Tiles Fix": {
 			"AllowValues": "true, false",
 			"Default": "true"
 		},
 		"Skull Cavern Fix": {
+			"AllowValues": "true, false",
+			"Default": "true"
+		},
+		"Mossy Tree Fix": {
+			"AllowValues": "true, false",
+			"Default": "true"
+		},
+		"Green Rain Tree Fix": {
 			"AllowValues": "true, false",
 			"Default": "true"
 		}
@@ -27,17 +35,19 @@
 		{
 			"LogName": "Outdoors",
 			"Action": "EditImage",
-			"Target": "Maps/spring_outdoorsTileSheet2, Maps/spring_outdoorTileSheet_extra, Maps/spring_island_tilesheet_1, Maps/summer_outdoorsTileSheet2, Maps/summer_outdoorTileSheet_extra, Maps/summer_island_tilesheet_1, Maps/fall_outdoorsTileSheet2, Maps/fall_outdoorTileSheet_extra, Maps/fall_island_tilesheet_1, Maps/winter_outdoorsTileSheet2, Maps/winter_outdoorTileSheet_extra, Maps/winter_island_tilesheet_1, ",
+			"Target": "Maps/spring_outdoorsTileSheet2, Maps/spring_outdoorTileSheet_extra, Maps/spring_island_tilesheet_1, Maps/summer_outdoorsTileSheet2, Maps/summer_outdoorTileSheet_extra, Maps/summer_island_tilesheet_1, Maps/fall_outdoorsTileSheet2, Maps/fall_outdoorTileSheet_extra, Maps/fall_island_tilesheet_1, Maps/winter_outdoorsTileSheet2, Maps/winter_outdoorTileSheet_extra, Maps/winter_island_tilesheet_1",
 			"FromFile": "assets/{{TargetWithoutPath}}.png",
-			"PatchMode": "Overlay"
-		},		
+			"PatchMode": "Overlay",
+			"Priority": "Early"
+		},
 		{
 			"LogName": "Outdoors Green Fall",
 			"Action": "EditImage",
 			"Target": "Maps/fall_outdoorTileSheet_extra, Maps/fall_outdoorsTileSheet2",
 			"FromFile": "assets/{{TargetWithoutPath}}_green.png",
 			"PatchMode": "Overlay",
-			"When": {"Green Fall": "true"}
+			"When": {"Green Fall": "true"},
+			"Priority": "Early"
 		},
 		{
 			"LogName": "Town Interior",
@@ -45,7 +55,8 @@
 			"Target": "Maps/townInterior_2",
 			"FromFile": "assets/{{TargetWithoutPath}}.png",
 			"PatchMode": "Overlay",
-			"When": {"Town Interior": "true"}
+			"When": {"Town Interior": "true"},
+			"Priority": "Early"
 		},
 		{
 			"LogName": "Carpenter Window Fix",
@@ -53,7 +64,8 @@
 			"Target": "Maps/spring_outdoorsTileSheet, Maps/summer_outdoorsTileSheet, Maps/fall_outdoorsTileSheet, Maps/winter_outdoorsTileSheet",
 			"FromFile": "assets/{{TargetWithoutPath}}.png",
 			"PatchMode": "Overlay",
-			"When": {"Carpenter Window Fix": "true"}
+			"When": {"Carpenter Window Fix": "true"},
+			"Priority": "Early"
 		},
 		{
 			"LogName": "Desert Tiles Fix",
@@ -61,7 +73,8 @@
 			"Target": "Maps/desert_festival_tilesheet, Maps/DesertTiles",
 			"FromFile": "assets/{{TargetWithoutPath}}.png",
 			"PatchMode": "Overlay",
-			"When": {"Desert Tiles Fix": "true"}
+			"When": {"Desert Tiles Fix": "true"},
+			"Priority": "Early"
 		},
 		{
 			"LogName": "Skull Cavern Fix",
@@ -69,7 +82,38 @@
 			"Target": "Maps/Mines/mine_desert",
 			"FromFile": "assets/{{TargetWithoutPath}}.png",
 			"PatchMode": "Overlay",
-			"When": {"Skull Cavern Fix": "true"}
+			"When": {"Skull Cavern Fix": "true"},
+			"Priority": "Early"
+		},
+		{
+			"LogName": "Mossy Tree Fix",
+			"Action": "EditImage",
+			"Target": "TerrainFeatures/tree1_spring, TerrainFeatures/tree1_summer, TerrainFeatures/tree1_fall, TerrainFeatures/tree2_spring, TerrainFeatures/tree2_summer, TerrainFeatures/tree2_fall, TerrainFeatures/tree3_spring, TerrainFeatures/tree3_summer, TerrainFeatures/tree3_fall",
+			"FromFile": "assets/{{TargetWithoutPath}}.png",
+			"PatchMode": "Overlay",
+			"When": {"Mossy Tree Fix": "true"},
+			"Priority": "Early"
+		},
+		{
+			"LogName": "Mossy Pine Tree Fix Summer",
+			"Action": "EditImage",
+			"Target": "TerrainFeatures/tree3_spring",
+			"FromFile": "assets/tree3_summer.png",
+			"PatchMode": "Overlay",
+			"When": {
+				"Season": "Summer",
+				"Mossy Tree Fix": "true"
+			},
+			"Priority": "Early"
+		},
+		{
+			"LogName": "Green Rain Tree Fix",
+			"Action": "EditImage",
+			"Target": "TerrainFeatures/tree1_greenRain, TerrainFeatures/tree1_greenRain_fall, TerrainFeatures/tree1_greenRain_winter, TerrainFeatures/tree2_greenRain, TerrainFeatures/tree2_greenRain_fall, TerrainFeatures/tree2_greenRain_winter, TerrainFeatures/tree3_greenRain, TerrainFeatures/tree3_greenRain_fall, TerrainFeatures/tree3_greenRain_winter",
+			"FromFile": "assets/{{TargetWithoutPath}}.png",
+			"PatchMode": "Overlay",
+			"When": {"Green Rain Tree Fix": "true"},
+			"Priority": "Early"
 		}
 	]
 }
