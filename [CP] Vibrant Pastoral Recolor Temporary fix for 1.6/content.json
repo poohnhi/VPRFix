@@ -12,6 +12,14 @@
 		"Carpenter Window Fix": {
 			"AllowValues": "true, false",
 			"Default": "true"
+		},
+		"Desert Tiles Fix": {
+			"AllowValues": "true, false",
+			"Default": "true"
+		},
+		"Skull Cavern Fix": {
+			"AllowValues": "true, false",
+			"Default": "true"
 		}
 	},
 	"Changes": [
@@ -46,6 +54,22 @@
 			"FromFile": "assets/{{TargetWithoutPath}}.png",
 			"PatchMode": "Overlay",
 			"When": {"Carpenter Window Fix": "true"}
+		},
+		{
+			"LogName": "Desert Tiles Fix",
+			"Action": "EditImage",
+			"Target": "Maps/desert_festival_tilesheet, Maps/DesertTiles",
+			"FromFile": "assets/{{TargetWithoutPath}}.png",
+			"PatchMode": "Overlay",
+			"When": {"Desert Tiles Fix": "true"}
+		},
+		{
+			"LogName": "Skull Cavern Fix",
+			"Action": "EditImage",
+			"Target": "Maps/Mines/mine_desert",
+			"FromFile": "assets/{{TargetWithoutPath}}.png",
+			"PatchMode": "Overlay",
+			"When": {"Skull Cavern Fix": "true"}
 		}
 	]
 }
