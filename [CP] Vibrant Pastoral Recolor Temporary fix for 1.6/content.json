@@ -3,39 +3,75 @@
 	"ConfigSchema": {
 		"Green Fall": {
 			"AllowValues": "true, false",
-			"Default": "true"
+			"Default": "true",
+			"Section": "VPR Sync Setting"
 		},
-		"Town Interior": {
+		"Water Type": {
+			"AllowValues": "transparent, semi, opaque",
+			"Default": "opaque",
+			"Section": "VPR Sync Setting"
+		},
+		"Blue Grass Type": {
+			"AllowValues": "none, vanilla, vanillaShort",
+			"Default": "vanilla",
+			"Section": "VPR Sync Setting"
+		},
+
+		"Town Interior Fix": {
 			"AllowValues": "true, false",
-			"Default": "true"
+			"Default": "true",
+			"Section": "Interior"
 		},
+		"Farm House Upgrade Interior Fix": {
+			"AllowValues": "true, false",
+			"Default": "true",
+			"Section": "Interior"
+		},
+
 		"Mini Map Fix": {
 			"AllowValues": "true, false",
-			"Default": "true"
+			"Default": "true",
+			"Section": "Mini Map"
 		},
-		"Carpenter Window Fix": {
+		"Meadowland Map Fix": {
 			"AllowValues": "true, false",
-			"Default": "false"
-		},
-		"Desert Tiles Fix": {
-			"AllowValues": "true, false",
-			"Default": "true"
-		},
-		"Skull Cavern Fix": {
-			"AllowValues": "true, false",
-			"Default": "true"
+			"Default": "true",
+			"Section": "Mini Map"
 		},
 		"Mossy Tree Fix": {
 			"AllowValues": "true, false",
-			"Default": "true"
+			"Default": "true",
+			"Section": "Tree"
 		},
 		"Green Rain Tree Fix": {
 			"AllowValues": "true, false",
-			"Default": "true"
+			"Default": "true",
+			"Section": "Tree"
+		},
+		"Carpenter Window Fix": {
+			"AllowValues": "true, false",
+			"Default": "false",
+			"Section": "Misc"
+		},
+		"Desert Tiles Fix": {
+			"AllowValues": "true, false",
+			"Default": "true",
+			"Section": "Misc"
+		},
+		"Skull Cavern Fix": {
+			"AllowValues": "true, false",
+			"Default": "true",
+			"Section": "Misc"
 		},
 		"Bookseller Zone Shadow Fix": {
 			"AllowValues": "true, false",
-			"Default": "true"
+			"Default": "true",
+			"Section": "Misc"
+		},
+		"Underwater Tree Animation Fix": {
+			"AllowValues": "true, false",
+			"Default": "true",
+			"Section": "Misc"
 		}
 	},
 	"Changes": [
@@ -43,10 +79,52 @@
 		{
 			"LogName": "Outdoors",
 			"Action": "EditImage",
-			"Target": "Maps/spring_outdoorsTileSheet2, Maps/spring_outdoorTileSheet_extra, Maps/spring_island_tilesheet_1, Maps/summer_outdoorsTileSheet2, Maps/summer_outdoorTileSheet_extra, Maps/summer_island_tilesheet_1, Maps/fall_outdoorsTileSheet2, Maps/fall_outdoorTileSheet_extra, Maps/fall_island_tilesheet_1, Maps/winter_outdoorsTileSheet2, Maps/winter_outdoorTileSheet_extra, Maps/winter_island_tilesheet_1",
+			"Target": "Maps/spring_outdoorsTileSheet2, Maps/spring_outdoorTileSheet_extra, Maps/summer_outdoorsTileSheet2, Maps/summer_outdoorTileSheet_extra, Maps/fall_outdoorsTileSheet2, Maps/fall_outdoorTileSheet_extra, Maps/winter_outdoorsTileSheet2, Maps/winter_outdoorTileSheet_extra",
+			"FromFile": "assets/{{TargetWithoutPath}}.png",
+			"PatchMode": "Overlay"
+		},
+		{
+			"LogName": "Underwater Tile Opaque and Semi",
+			"Action": "EditImage",
+			"Target": "Maps/{{season}}_outdoorsTileSheet2",
+			"FromFile": "assets/{{season}}_opaque.png",
+			"ToArea": {"X": 0, "Y": 816, "Width": 112, "Height": 80},
+			"PatchMode": "Overlay",
+			"When": {"Water Type": "semi, opaque"}
+		},
+		{
+			"LogName": "Blue Grass Change",
+			"Action": "EditImage",
+			"Target": "TerrainFeatures/grass",
+			"FromFile": "assets/bluegrass_{{Blue Grass Type}}.png",
+			"ToArea": {"X": 0, "Y": 160, "Width": 48, "Height": 80},
+			"PatchMode": "Replace",
+			"When": {"Blue Grass Type|contains=none": "false", "HasFile:{{FromFile}}": "true"}
+		},
+		{
+			"LogName": "Farm House Upgrade Interior Fix",
+			"Action": "EditImage",
+			"Target": "Maps/farmhouse_tiles",
 			"FromFile": "assets/{{TargetWithoutPath}}.png",
 			"PatchMode": "Overlay",
-			"Priority": "Early"
+			"When": {"Farm House Upgrade Interior Fix": "true"}
+		},
+		{
+			"LogName": "Fix that dummy shadow winter tile",
+			"Action": "EditImage",
+			"Target": "Maps/winter_outdoorsTileSheet2",
+			"FromFile": "assets/winter_tile_fix.png",
+			"PatchMode": "Replace",
+			"ToArea": { "X": 48, "Y": 80, "Width": 16, "Height": 16 }
+		},
+		{
+			"LogName": "Underwater Tree Animation Fix",
+			"Action": "EditImage",
+			"Target": "Maps/spring_island_tilesheet_1, Maps/summer_island_tilesheet_1, Maps/fall_island_tilesheet_1, Maps/winter_island_tilesheet_1",
+			"FromFile": "assets/{{TargetWithoutPath}}.png",
+			"PatchMode": "Overlay",
+			"Priority": "Early",
+			"When": {"Underwater Tree Animation Fix": "true"}
 		},
 		{
 			"LogName": "Bookseller Zone Shadow Fix",
@@ -55,18 +133,26 @@
 			"FromFile": "assets/{{TargetWithoutPath}}_shadow.png",
 			"ToArea": { "X": 112, "Y": 208, "Width": 144, "Height": 32 },
 			"PatchMode": "Overlay",
-			"Priority": "Late",
 			"When": {"Bookseller Zone Shadow Fix": "true"}
 		},
 		{
 			"LogName": "Map Fix",
 			"Action": "EditImage",
-			"Target": "LooseSprites/map, LooseSprites/map_summer, LooseSprites/map_fall, LooseSprites/map_winter, LooseSprites/Farm_ranching_map, LooseSprites/Farm_ranching_map_summer, LooseSprites/Farm_ranching_map_fall, LooseSprites/Farm_ranching_map_winter",
+			"Target": "LooseSprites/map, LooseSprites/map_summer, LooseSprites/map_fall, LooseSprites/map_winter",
 			"FromFile": "assets/{{TargetWithoutPath}}.png",
 			"PatchMode": "Overlay",
-			"Priority": "Late",
+			"Priority": "Default",
 			// "When": {"HasMod |contains=": }
 			"When": {"Mini Map Fix": "true"}
+		},
+		{
+			"LogName": "Meadowland Map Fix",
+			"Action": "EditImage",
+			"Target": "LooseSprites/Farm_ranching_map, LooseSprites/Farm_ranching_map_summer, LooseSprites/Farm_ranching_map_fall, LooseSprites/Farm_ranching_map_winter",
+			"FromFile": "assets/{{TargetWithoutPath}}.png",
+			"PatchMode": "Overlay",
+			"Priority": "Default",
+			"When": {"Meadowland Map Fix": "true"}
 		},
 		{
 			"LogName": "Map Fix Green Fall",
@@ -87,12 +173,12 @@
 			"Priority": "Early"
 		},
 		{
-			"LogName": "Town Interior",
+			"LogName": "Town Interior Fix",
 			"Action": "EditImage",
 			"Target": "Maps/townInterior_2",
 			"FromFile": "assets/{{TargetWithoutPath}}.png",
 			"PatchMode": "Overlay",
-			"When": {"Town Interior": "true"},
+			"When": {"Town Interior Fix": "true"},
 			"Priority": "Early"
 		},
 		{
@@ -152,15 +238,5 @@
 			"When": {"Green Rain Tree Fix": "true"},
 			"Priority": "Early"
 		}
-		// {
-		// 	"LogName": "Green Rain Bushes Recolor",
-		// 	"Action": "EditImage",
-		// 	"Target": "TileSheets/Objects_2",
-		// 	"PatchMode": "Overlay",
-		// 	"FromFile": "assets/{{TargetWithoutPath}}_{{season}}.png",
-		// 	// "When": {"Green Rain Bushes Recolor": "true"},
-		// 	"ToArea": { "X": 0, "Y": 80, "Width": 128, "Height": 32 },
-		// 	"Priority": "Early"
-		// }
 	]
 }
