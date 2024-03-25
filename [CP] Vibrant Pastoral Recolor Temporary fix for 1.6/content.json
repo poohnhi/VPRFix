@@ -79,7 +79,7 @@
 		{
 			"LogName": "Outdoors",
 			"Action": "EditImage",
-			"Target": "Maps/spring_outdoorsTileSheet2, Maps/spring_outdoorTileSheet_extra, Maps/summer_outdoorsTileSheet2, Maps/summer_outdoorTileSheet_extra, Maps/fall_outdoorsTileSheet2, Maps/fall_outdoorTileSheet_extra, Maps/winter_outdoorsTileSheet2, Maps/winter_outdoorTileSheet_extra",
+			"Target": "Maps/spring_outdoorsTileSheet2, Maps/spring_outdoorTileSheet_extra, Maps/summer_outdoorsTileSheet2, Maps/summer_outdoorTileSheet_extra, Maps/fall_outdoorsTileSheet2, Maps/fall_outdoorTileSheet_extra, Maps/winter_outdoorsTileSheet2, Maps/winter_outdoorTileSheet_extra, Maps/island_tilesheet_1",
 			"FromFile": "assets/{{TargetWithoutPath}}.png",
 			"PatchMode": "Overlay"
 		},
@@ -121,9 +121,21 @@
 			"LogName": "Underwater Tree Animation Fix",
 			"Action": "EditImage",
 			"Target": "Maps/spring_island_tilesheet_1, Maps/summer_island_tilesheet_1, Maps/fall_island_tilesheet_1, Maps/winter_island_tilesheet_1",
-			"FromFile": "assets/{{TargetWithoutPath}}.png",
+			"FromFile": "assets/{{TargetWithoutPath}}_treefix.png",
 			"PatchMode": "Overlay",
+			"Priority": "Early",
+			"ToArea": { "X": 320, "Y": 368, "Width": 32, "Height": 16 },
 			"When": {"Underwater Tree Animation Fix": "true"}
+		},
+		{
+			"LogName": "Underwater Tree Animation Fix Green Fall",
+			"Action": "EditImage",
+			"Target": "Maps/fall_island_tilesheet_1",
+			"FromFile": "assets/{{TargetWithoutPath}}_treefix_green.png",
+			"PatchMode": "Overlay",
+			"Priority": "Early",
+			"ToArea": { "X": 320, "Y": 368, "Width": 32, "Height": 16 },
+			"When": {"Underwater Tree Animation Fix": "true", "Green Fall": "true"}
 		},
 		{
 			"LogName": "Bookseller Zone Shadow Fix",
@@ -165,7 +177,7 @@
 			"Target": "Maps/fall_outdoorTileSheet_extra, Maps/fall_outdoorsTileSheet2",
 			"FromFile": "assets/{{TargetWithoutPath}}_green.png",
 			"PatchMode": "Overlay",
-			"When": {"Green Fall": "true"},
+			"When": {"Green Fall": "true"}
 		},
 		{
 			"LogName": "Town Interior Fix",
@@ -173,15 +185,42 @@
 			"Target": "Maps/townInterior_2",
 			"FromFile": "assets/{{TargetWithoutPath}}.png",
 			"PatchMode": "Overlay",
-			"When": {"Town Interior Fix": "true"},
+			"When": {"Town Interior Fix": "true"}
+		},
+		{
+			"LogName": "Emily Dream Fix",
+			"Action": "EditImage",
+			"Target": "LooseSprites/Cursors",
+			"FromFile": "assets/emily_blanket.png",
+			"PatchMode": "Overlay",
+			"Priority": "Early",
+			"ToArea": { "X": 560, "Y": 1888, "Width": 48, "Height": 16 },
+			"When": {"Town Interior Fix": "true"}
+		},
+		{
+			"LogName": "Derby Grass Fix",
+			"Action": "EditImage",
+			"Target": "Maps/FishingDerbyTiles_international, Maps/FishingDerbyTiles",
+			"FromFile": "assets/FishingDerbyTiles.png",
+			"PatchMode": "Overlay",
+			"Priority": "Early"
 		},
 		{
 			"LogName": "Carpenter Window Fix",
 			"Action": "EditImage",
 			"Target": "Maps/spring_outdoorsTileSheet, Maps/summer_outdoorsTileSheet, Maps/fall_outdoorsTileSheet, Maps/winter_outdoorsTileSheet",
-			"FromFile": "assets/{{TargetWithoutPath}}.png",
+			"FromFile": "assets/{{TargetWithoutPath}}_window.png",
 			"PatchMode": "Overlay",
-			"When": {"Carpenter Window Fix": "true"},
+			"ToArea": { "X": 336, "Y": 464, "Width": 16, "Height": 32 },
+			"When": {"Carpenter Window Fix": "true"}
+		},
+		{
+			"LogName": "Winter Glittering Boulder' Crevice Fix",
+			"Action": "EditImage",
+			"Target": "Maps/winter_outdoorsTileSheet",
+			"FromFile": "assets/{{TargetWithoutPath}}_crevice.png",
+			"PatchMode": "Overlay",
+			"ToArea": { "X": 288, "Y": 1104, "Width": 32, "Height": 32 }
 		},
 		{
 			"LogName": "Desert Tiles Fix",
