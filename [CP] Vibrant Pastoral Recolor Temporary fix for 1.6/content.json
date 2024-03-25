@@ -123,7 +123,6 @@
 			"Target": "Maps/spring_island_tilesheet_1, Maps/summer_island_tilesheet_1, Maps/fall_island_tilesheet_1, Maps/winter_island_tilesheet_1",
 			"FromFile": "assets/{{TargetWithoutPath}}.png",
 			"PatchMode": "Overlay",
-			"Priority": "Early",
 			"When": {"Underwater Tree Animation Fix": "true"}
 		},
 		{
@@ -141,7 +140,6 @@
 			"Target": "LooseSprites/map, LooseSprites/map_summer, LooseSprites/map_fall, LooseSprites/map_winter",
 			"FromFile": "assets/{{TargetWithoutPath}}.png",
 			"PatchMode": "Overlay",
-			"Priority": "Default",
 			// "When": {"HasMod |contains=": }
 			"When": {"Mini Map Fix": "true"}
 		},
@@ -151,7 +149,6 @@
 			"Target": "LooseSprites/Farm_ranching_map, LooseSprites/Farm_ranching_map_summer, LooseSprites/Farm_ranching_map_fall, LooseSprites/Farm_ranching_map_winter",
 			"FromFile": "assets/{{TargetWithoutPath}}.png",
 			"PatchMode": "Overlay",
-			"Priority": "Default",
 			"When": {"Meadowland Map Fix": "true"}
 		},
 		{
@@ -160,7 +157,6 @@
 			"Target": "LooseSprites/map_fall, LooseSprites/Farm_ranching_map_fall",
 			"FromFile": "assets/{{TargetWithoutPath}}_green.png",
 			"PatchMode": "Overlay",
-			"Priority": "Late",
 			"When": {"Green Fall": "true", "Mini Map Fix": "true"}
 		},
 		{
@@ -170,7 +166,6 @@
 			"FromFile": "assets/{{TargetWithoutPath}}_green.png",
 			"PatchMode": "Overlay",
 			"When": {"Green Fall": "true"},
-			"Priority": "Early"
 		},
 		{
 			"LogName": "Town Interior Fix",
@@ -179,7 +174,6 @@
 			"FromFile": "assets/{{TargetWithoutPath}}.png",
 			"PatchMode": "Overlay",
 			"When": {"Town Interior Fix": "true"},
-			"Priority": "Early"
 		},
 		{
 			"LogName": "Carpenter Window Fix",
@@ -188,7 +182,6 @@
 			"FromFile": "assets/{{TargetWithoutPath}}.png",
 			"PatchMode": "Overlay",
 			"When": {"Carpenter Window Fix": "true"},
-			"Priority": "Early"
 		},
 		{
 			"LogName": "Desert Tiles Fix",
@@ -197,7 +190,6 @@
 			"FromFile": "assets/{{TargetWithoutPath}}.png",
 			"PatchMode": "Overlay",
 			"When": {"Desert Tiles Fix": "true"},
-			"Priority": "Early"
 		},
 		{
 			"LogName": "Skull Cavern Fix",
@@ -206,7 +198,6 @@
 			"FromFile": "assets/{{TargetWithoutPath}}.png",
 			"PatchMode": "Overlay",
 			"When": {"Skull Cavern Fix": "true"},
-			"Priority": "Early"
 		},
 		{
 			"LogName": "Mossy Tree Fix",
@@ -215,7 +206,6 @@
 			"FromFile": "assets/{{TargetWithoutPath}}.png",
 			"PatchMode": "Overlay",
 			"When": {"Mossy Tree Fix": "true"},
-			"Priority": "Early"
 		},
 		{
 			"LogName": "Mossy Pine Tree Fix Summer",
@@ -227,7 +217,6 @@
 				"Season": "Summer",
 				"Mossy Tree Fix": "true"
 			},
-			"Priority": "Early"
 		},
 		{
 			"LogName": "Green Rain Tree Fix",
@@ -236,7 +225,6 @@
 			"FromFile": "assets/{{TargetWithoutPath}}.png",
 			"PatchMode": "Replace",
 			"When": {"Green Rain Tree Fix": "true"},
-			"Priority": "Early"
 		}
 	]
 }
