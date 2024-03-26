@@ -1,7 +1,7 @@
 {
 	"Name": "VPR Temporary Fix for 1.6",
 	"Author": "Pooh",
-	"Version": "1.0.6",
+	"Version": "1.0.7",
 	"Description": "Temporary force the new 1.6 tilesheets to match VPR recolored from grapeponta.",
 	"UniqueID": "poohnhi.VPRTempFix",
 	"UpdateKeys": [ "Nexus:20698" ],
@@ -27,6 +27,10 @@
 		},
 		{
 			"UniqueID": "grapeponta.VanillaInteriors",
+			"IsRequired": false
+		},
+		{
+			"UniqueID": "JefGrizli.RedrawPelicanTownC",
 			"IsRequired": false
 		}
 	]

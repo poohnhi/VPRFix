@@ -1,87 +1,218 @@
 {
+	"$schema": "https://smapi.io/schemas/content-patcher.json",
 	"Format": "2.0.0",
 	"ConfigSchema": {
 		"Green Fall": {
 			"AllowValues": "true, false",
 			"Default": "true",
-			"Section": "VPR Sync Setting"
+			"Section": "VPR Sync Setting",
+			"Description": "Make fall grass green instead of orange. Make sure to check for original VPR's config too. Will be override with Redraw Pelican Town's config if installed. Sleep for a day in game or reload the game to see the changes. If you see mismatching tiles, you might want to check the config of other recolor/retexture mods."
 		},
 		"Water Type": {
 			"AllowValues": "transparent, semi, opaque",
 			"Default": "opaque",
-			"Section": "VPR Sync Setting"
+			"Section": "VPR Sync Setting",
+			"Description": "If you see underwater tile flickering, please change this config to match VPR's Water Type config."
 		},
 		"Blue Grass Type": {
-			"AllowValues": "none, vanilla, vanillaShort",
+			"AllowValues": "none, vanilla, vanillaShort, bluer, bluerShort",
 			"Default": "vanilla",
-			"Section": "VPR Sync Setting"
+			"Section": "VPR Sync Setting",
+			"Description": "Change the color of the blue grass. You can change this option to none if you want to use other mods that edit the blue grass."
 		},
 
 		"Town Interior Fix": {
 			"AllowValues": "true, false",
 			"Default": "true",
-			"Section": "Interior"
+			"Section": "Interior",
+			"Description": "Change 1.6 town interior tilesheet to VPR. Turn this off if you see any conflict when you use other interior mods."
 		},
 		"Farm House Upgrade Interior Fix": {
 			"AllowValues": "true, false",
 			"Default": "true",
-			"Section": "Interior"
+			"Section": "Interior",
+			"Description": "Change 1.6 farm house tilesheet to VPR. Turn this off if you see any conflict when you use other farm house interior mods."
+		},
+		"Door Mismatching Color Fix": {
+			"AllowValues": "true, false",
+			"Default": "true",
+			"Section": "Interior",
+			"Description": "Fix town doors mismatching color. Turn this off if you see any conflict when you use other town interior mods."
 		},
 
 		"Mini Map Fix": {
 			"AllowValues": "true, false",
 			"Default": "true",
-			"Section": "Mini Map"
+			"Section": "Mini Map",
+			"Description": "Fix town doors mismatching color. Recolor the vanilla mini map (not included other mod's maps). Turn this off if you're using SVE or any mod other mod that edit the mini map."
 		},
 		"Meadowland Map Fix": {
 			"AllowValues": "true, false",
 			"Default": "true",
-			"Section": "Mini Map"
+			"Section": "Mini Map",
+			"Description": "Recolor the meadowland mini map to match this mod's map. Turn this off if you're using SVE or any other mod that edit the mini map."
 		},
+
 		"Mossy Tree Fix": {
 			"AllowValues": "true, false",
 			"Default": "true",
-			"Section": "Tree"
+			"Section": "Tree",
+			"Description": "Recolor the mossy vanilla trees to VPR. Turn this off if you see any conflict when you use other tree texture mods."
 		},
+
 		"Green Rain Tree Fix": {
 			"AllowValues": "true, false",
 			"Default": "true",
-			"Section": "Tree"
+			"Section": "Tree",
+			"Description": "Recolor the new green rain tree to VPR. Turn this off if you see any conflict when you use other tree texture mods."
 		},
+
 		"Carpenter Window Fix": {
 			"AllowValues": "true, false",
 			"Default": "false",
-			"Section": "Misc"
+			"Section": "Misc",
+			"Description": "Turn this on or off if you see weird animation for the window of Robin's house."
 		},
 		"Desert Tiles Fix": {
 			"AllowValues": "true, false",
 			"Default": "true",
-			"Section": "Misc"
+			"Section": "Misc",
+			"Description": "Recolor the new 1.6 desert tilesheet to VPR."
 		},
 		"Skull Cavern Fix": {
 			"AllowValues": "true, false",
 			"Default": "true",
-			"Section": "Misc"
+			"Section": "Misc",
+			"Description": "Recolor the new 1.6 skull cavern entrance to VPR."
 		},
 		"Bookseller Zone Shadow Fix": {
 			"AllowValues": "true, false",
 			"Default": "true",
-			"Section": "Misc"
+			"Section": "Misc",
+			"Description": "Tried to fix the bookseller zone shadow. Turn this off if you see any conflicting shadow on the ground. Will be override with Redraw Pelican Town if installed."
 		},
 		"Underwater Tree Animation Fix": {
 			"AllowValues": "true, false",
 			"Default": "true",
-			"Section": "Misc"
+			"Section": "Misc",
+			"Description": "Tried to fix the animation of underwater tree (mostly at beach farms). Turn this off if you're using other's mods that edit this tree."
+		},
+		"Seeds Spots Fix": {
+			"AllowValues": "true, false",
+			"Default": "true",
+			"Section": "Misc",
+			"Description": "Recolor 1.6 seeds spots to make it more recognizable."
+		},
+
+		"Force Replace Outdoors": {
+			"AllowValues": "true, false",
+			"Default": "false",
+			"Section": "Force Override",
+			"Description": "Experimenting. Not recommended. Force replace all outdoors tilesheet changes with this mod tilesheet changes."
 		}
 	},
+	"DynamicTokens": [
+		{
+			"Name": "GreenFallCompat",
+			"Value": "{{Green Fall}}"
+		},
+		{
+			"Name": "GreenFallCompat",
+			"Value": "{{JefGrizli.RedrawPelicanTownC/GreenFall}}",
+			"When": { "HasMod": "JefGrizli.RedrawPelicanTownC" }
+		},
+		{
+			"Name": "SeedsSpotsFix",
+			"Value": "{{Seeds Spots Fix}}"
+		},
+		{
+			"Name": "SeedsSpotsFix",
+			"Value": "false",
+			"When": {
+				"Seeds Spots Fix": "true",
+				"GreenFallCompat": "false",
+				"Season": "fall"
+			}
+		},
+		{
+			"Name": "SeedsSpotsFix",
+			"Value": "false",
+			"When": {
+				"Seeds Spots Fix": "true",
+				"Season": "winter"
+			}
+		},
+		{
+			"Name": "BooksellerCompat",
+			"Value": "{{Bookseller Zone Shadow Fix}}"
+		},
+		{
+			"Name": "BooksellerCompat",
+			"Value": "false",
+			"When": { "HasMod": "JefGrizli.RedrawPelicanTown" }
+		}
+	],
 	"Changes": [
-		// Maps
+		// Outdoors
 		{
 			"LogName": "Outdoors",
 			"Action": "EditImage",
 			"Target": "Maps/spring_outdoorsTileSheet2, Maps/spring_outdoorTileSheet_extra, Maps/summer_outdoorsTileSheet2, Maps/summer_outdoorTileSheet_extra, Maps/fall_outdoorsTileSheet2, Maps/fall_outdoorTileSheet_extra, Maps/winter_outdoorsTileSheet2, Maps/winter_outdoorTileSheet_extra, Maps/island_tilesheet_1",
 			"FromFile": "assets/{{TargetWithoutPath}}.png",
-			"PatchMode": "Overlay"
+			"PatchMode": "Overlay",
+			"When": {"Force Replace Outdoors": "false"}
+		},
+		{
+			"LogName": "Force Outdoors",
+			"Action": "EditImage",
+			"Target": "Maps/spring_outdoorsTileSheet2, Maps/spring_outdoorTileSheet_extra, Maps/summer_outdoorsTileSheet2, Maps/summer_outdoorTileSheet_extra, Maps/fall_outdoorsTileSheet2, Maps/fall_outdoorTileSheet_extra, Maps/winter_outdoorsTileSheet2, Maps/winter_outdoorTileSheet_extra, Maps/island_tilesheet_1",
+			"FromFile": "assets/{{TargetWithoutPath}}.png",
+			"PatchMode": "Overlay",
+			"Priority": "Default+1",
+			"When": {"Force Replace Outdoors": "true"}
+		},
+		{
+			"LogName": "Force Outdoors Green Fall",
+			"Action": "EditImage",
+			"Target": "Maps/fall_outdoorTileSheet_extra, Maps/fall_outdoorsTileSheet2",
+			"FromFile": "assets/{{TargetWithoutPath}}_green.png",
+			"PatchMode": "Overlay",
+			"When": {"GreenFallCompat": "true", "Force Replace Outdoors": "false"},
+			"Update": "OnTimeChange"
+		},
+		{
+			"LogName": "Force Outdoors Green Fall",
+			"Action": "EditImage",
+			"Target": "Maps/fall_outdoorTileSheet_extra, Maps/fall_outdoorsTileSheet2",
+			"FromFile": "assets/{{TargetWithoutPath}}_green.png",
+			"PatchMode": "Overlay",
+			"Priority": "Default+1",
+			"When": {"GreenFallCompat": "true", "Force Replace Outdoors": "true"},
+			"Update": "OnTimeChange"
+		},
+		{
+			"LogName": "Derby Grass Fix",
+			"Action": "EditImage",
+			"Target": "Maps/FishingDerbyTiles_international, Maps/FishingDerbyTiles",
+			"FromFile": "assets/FishingDerbyTiles.png",
+			"PatchMode": "Overlay",
+			"Priority": "Early"
+		},
+		{
+			"LogName": "Winter Glittering Boulder' Crevice Fix",
+			"Action": "EditImage",
+			"Target": "Maps/winter_outdoorsTileSheet",
+			"FromFile": "assets/{{TargetWithoutPath}}_crevice.png",
+			"PatchMode": "Overlay",
+			"ToArea": { "X": 288, "Y": 1104, "Width": 32, "Height": 32 }
+		},
+		{
+			"LogName": "Fix that dummy shadow winter tile",
+			"Action": "EditImage",
+			"Target": "Maps/winter_outdoorsTileSheet2",
+			"FromFile": "assets/winter_tile_fix.png",
+			"PatchMode": "Replace",
+			"ToArea": { "X": 48, "Y": 80, "Width": 16, "Height": 16 }
 		},
 		{
 			"LogName": "Underwater Tile Opaque and Semi",
@@ -101,6 +232,25 @@
 			"PatchMode": "Replace",
 			"When": {"Blue Grass Type|contains=none": "false", "HasFile:{{FromFile}}": "true"}
 		},
+		// Interior
+		{
+			"LogName": "Town Interior Fix",
+			"Action": "EditImage",
+			"Target": "Maps/townInterior_2",
+			"FromFile": "assets/{{TargetWithoutPath}}.png",
+			"PatchMode": "Overlay",
+			"When": {"Town Interior Fix": "true"}
+		},
+		{
+			"LogName": "Emily Dream Fix",
+			"Action": "EditImage",
+			"Target": "LooseSprites/Cursors",
+			"FromFile": "assets/emily_blanket.png",
+			"PatchMode": "Overlay",
+			"Priority": "Early",
+			"ToArea": { "X": 560, "Y": 1888, "Width": 48, "Height": 16 },
+			"When": {"Town Interior Fix": "true"}
+		},
 		{
 			"LogName": "Farm House Upgrade Interior Fix",
 			"Action": "EditImage",
@@ -110,42 +260,48 @@
 			"When": {"Farm House Upgrade Interior Fix": "true"}
 		},
 		{
-			"LogName": "Fix that dummy shadow winter tile",
-			"Action": "EditImage",
-			"Target": "Maps/winter_outdoorsTileSheet2",
-			"FromFile": "assets/winter_tile_fix.png",
-			"PatchMode": "Replace",
-			"ToArea": { "X": 48, "Y": 80, "Width": 16, "Height": 16 }
-		},
+            "LogName": "Door Mismatching Color Fix 1",
+            "Action": "EditImage",
+            "Target": "Maps/townInterior",
+            "FromFile": "assets/door1.png",
+            "PatchMode": "Replace",
+            "ToArea": {
+                "X": 384,
+                "Y": 16,
+                "Width": 16,
+                "Height": 48
+            },
+			"When": {"Door Mismatching Color Fix": "true"}
+        },
 		{
-			"LogName": "Underwater Tree Animation Fix",
-			"Action": "EditImage",
-			"Target": "Maps/spring_island_tilesheet_1, Maps/summer_island_tilesheet_1, Maps/fall_island_tilesheet_1, Maps/winter_island_tilesheet_1",
-			"FromFile": "assets/{{TargetWithoutPath}}_treefix.png",
-			"PatchMode": "Overlay",
-			"Priority": "Early",
-			"ToArea": { "X": 320, "Y": 368, "Width": 32, "Height": 16 },
-			"When": {"Underwater Tree Animation Fix": "true"}
-		},
-		{
-			"LogName": "Underwater Tree Animation Fix Green Fall",
-			"Action": "EditImage",
-			"Target": "Maps/fall_island_tilesheet_1",
-			"FromFile": "assets/{{TargetWithoutPath}}_treefix_green.png",
-			"PatchMode": "Overlay",
-			"Priority": "Early",
-			"ToArea": { "X": 320, "Y": 368, "Width": 32, "Height": 16 },
-			"When": {"Underwater Tree Animation Fix": "true", "Green Fall": "true"}
-		},
-		{
-			"LogName": "Bookseller Zone Shadow Fix",
-			"Action": "EditImage",
-			"Target": "Maps/spring_outdoorsTileSheet2, Maps/summer_outdoorsTileSheet2, Maps/fall_outdoorsTileSheet2, Maps/winter_outdoorsTileSheet2",
-			"FromFile": "assets/{{TargetWithoutPath}}_shadow.png",
-			"ToArea": { "X": 112, "Y": 208, "Width": 144, "Height": 32 },
-			"PatchMode": "Overlay",
-			"When": {"Bookseller Zone Shadow Fix": "true"}
-		},
+            "LogName": "Door Mismatching Color Fix 2",
+            "Action": "EditImage",
+            "Target": "Maps/townInterior",
+            "FromFile": "assets/door2.png",
+            "PatchMode": "Replace",
+            "ToArea": {
+                "X": 96,
+                "Y": 384,
+                "Width": 16,
+                "Height": 48
+            },
+			"When": {"Door Mismatching Color Fix": "true"}
+        },
+        {
+            "LogName": "Door Mismatching Color Fix 2",
+            "Action": "EditImage",
+            "Target": "Maps/townInterior",
+            "FromFile": "assets/door3.png",
+            "PatchMode": "Replace",
+            "ToArea": {
+                "X": 384,
+                "Y": 368,
+                "Width": 32,
+                "Height": 48
+            },
+			"When": {"Door Mismatching Color Fix": "true"}
+        },
+		// Mini Map
 		{
 			"LogName": "Map Fix",
 			"Action": "EditImage",
@@ -169,82 +325,16 @@
 			"Target": "LooseSprites/map_fall, LooseSprites/Farm_ranching_map_fall",
 			"FromFile": "assets/{{TargetWithoutPath}}_green.png",
 			"PatchMode": "Overlay",
-			"When": {"Green Fall": "true", "Mini Map Fix": "true"}
+			"When": {"GreenFallCompat": "true", "Mini Map Fix": "true"}
 		},
-		{
-			"LogName": "Outdoors Green Fall",
-			"Action": "EditImage",
-			"Target": "Maps/fall_outdoorTileSheet_extra, Maps/fall_outdoorsTileSheet2",
-			"FromFile": "assets/{{TargetWithoutPath}}_green.png",
-			"PatchMode": "Overlay",
-			"When": {"Green Fall": "true"}
-		},
-		{
-			"LogName": "Town Interior Fix",
-			"Action": "EditImage",
-			"Target": "Maps/townInterior_2",
-			"FromFile": "assets/{{TargetWithoutPath}}.png",
-			"PatchMode": "Overlay",
-			"When": {"Town Interior Fix": "true"}
-		},
-		{
-			"LogName": "Emily Dream Fix",
-			"Action": "EditImage",
-			"Target": "LooseSprites/Cursors",
-			"FromFile": "assets/emily_blanket.png",
-			"PatchMode": "Overlay",
-			"Priority": "Early",
-			"ToArea": { "X": 560, "Y": 1888, "Width": 48, "Height": 16 },
-			"When": {"Town Interior Fix": "true"}
-		},
-		{
-			"LogName": "Derby Grass Fix",
-			"Action": "EditImage",
-			"Target": "Maps/FishingDerbyTiles_international, Maps/FishingDerbyTiles",
-			"FromFile": "assets/FishingDerbyTiles.png",
-			"PatchMode": "Overlay",
-			"Priority": "Early"
-		},
-		{
-			"LogName": "Carpenter Window Fix",
-			"Action": "EditImage",
-			"Target": "Maps/spring_outdoorsTileSheet, Maps/summer_outdoorsTileSheet, Maps/fall_outdoorsTileSheet, Maps/winter_outdoorsTileSheet",
-			"FromFile": "assets/{{TargetWithoutPath}}_window.png",
-			"PatchMode": "Overlay",
-			"ToArea": { "X": 336, "Y": 464, "Width": 16, "Height": 32 },
-			"When": {"Carpenter Window Fix": "true"}
-		},
-		{
-			"LogName": "Winter Glittering Boulder' Crevice Fix",
-			"Action": "EditImage",
-			"Target": "Maps/winter_outdoorsTileSheet",
-			"FromFile": "assets/{{TargetWithoutPath}}_crevice.png",
-			"PatchMode": "Overlay",
-			"ToArea": { "X": 288, "Y": 1104, "Width": 32, "Height": 32 }
-		},
-		{
-			"LogName": "Desert Tiles Fix",
-			"Action": "EditImage",
-			"Target": "Maps/desert_festival_tilesheet, Maps/DesertTiles",
-			"FromFile": "assets/{{TargetWithoutPath}}.png",
-			"PatchMode": "Overlay",
-			"When": {"Desert Tiles Fix": "true"},
-		},
-		{
-			"LogName": "Skull Cavern Fix",
-			"Action": "EditImage",
-			"Target": "Maps/Mines/mine_desert",
-			"FromFile": "assets/{{TargetWithoutPath}}.png",
-			"PatchMode": "Overlay",
-			"When": {"Skull Cavern Fix": "true"},
-		},
+		// Tree
 		{
 			"LogName": "Mossy Tree Fix",
 			"Action": "EditImage",
-			"Target": "TerrainFeatures/tree1_spring, TerrainFeatures/tree1_summer, TerrainFeatures/tree1_fall, TerrainFeatures/tree2_spring, TerrainFeatures/tree2_summer, TerrainFeatures/tree2_fall, TerrainFeatures/tree3_spring, TerrainFeatures/tree3_summer, TerrainFeatures/tree3_fall",
+			"Target": "TerrainFeatures/tree1_spring, TerrainFeatures/tree1_summer, TerrainFeatures/tree1_fall, TerrainFeatures/tree2_spring, TerrainFeatures/tree2_summer, TerrainFeatures/tree2_fall, TerrainFeatures/tree3_spring, TerrainFeatures/tree3_summer, TerrainFeatures/tree3_fall, TerrainFeatures/tree1_winter, TerrainFeatures/tree2_winter",
 			"FromFile": "assets/{{TargetWithoutPath}}.png",
 			"PatchMode": "Overlay",
-			"When": {"Mossy Tree Fix": "true"},
+			"When": {"Mossy Tree Fix": "true"}
 		},
 		{
 			"LogName": "Mossy Pine Tree Fix Summer",
@@ -255,7 +345,7 @@
 			"When": {
 				"Season": "Summer",
 				"Mossy Tree Fix": "true"
-			},
+			}
 		},
 		{
 			"LogName": "Green Rain Tree Fix",
@@ -263,7 +353,72 @@
 			"Target": "TerrainFeatures/tree1_greenRain, TerrainFeatures/tree1_greenRain_fall, TerrainFeatures/tree1_greenRain_winter, TerrainFeatures/tree2_greenRain, TerrainFeatures/tree2_greenRain_fall, TerrainFeatures/tree2_greenRain_winter, TerrainFeatures/tree3_greenRain, TerrainFeatures/tree3_greenRain_fall, TerrainFeatures/tree3_greenRain_winter",
 			"FromFile": "assets/{{TargetWithoutPath}}.png",
 			"PatchMode": "Replace",
-			"When": {"Green Rain Tree Fix": "true"},
+			"When": {"Green Rain Tree Fix": "true"}
+		},
+		// Misc
+		{
+			"LogName": "Carpenter Window Fix",
+			"Action": "EditImage",
+			"Target": "Maps/spring_outdoorsTileSheet, Maps/summer_outdoorsTileSheet, Maps/fall_outdoorsTileSheet, Maps/winter_outdoorsTileSheet",
+			"FromFile": "assets/{{TargetWithoutPath}}_window.png",
+			"PatchMode": "Overlay",
+			"ToArea": { "X": 336, "Y": 464, "Width": 16, "Height": 32 },
+			"When": {"Carpenter Window Fix": "true"}
+		},
+		{
+			"LogName": "Desert Tiles Fix",
+			"Action": "EditImage",
+			"Target": "Maps/desert_festival_tilesheet, Maps/DesertTiles",
+			"FromFile": "assets/{{TargetWithoutPath}}.png",
+			"PatchMode": "Overlay",
+			"When": {"Desert Tiles Fix": "true"}
+		},
+		{
+			"LogName": "Skull Cavern Fix",
+			"Action": "EditImage",
+			"Target": "Maps/Mines/mine_desert",
+			"FromFile": "assets/{{TargetWithoutPath}}.png",
+			"PatchMode": "Overlay",
+			"When": {"Skull Cavern Fix": "true"}
+		},
+		{
+			"LogName": "Bookseller Zone Shadow Fix",
+			"Action": "EditImage",
+			"Target": "Maps/spring_outdoorsTileSheet2, Maps/summer_outdoorsTileSheet2, Maps/fall_outdoorsTileSheet2, Maps/winter_outdoorsTileSheet2",
+			"FromFile": "assets/{{TargetWithoutPath}}_shadow.png",
+			"ToArea": { "X": 112, "Y": 208, "Width": 144, "Height": 32 },
+			"PatchMode": "Overlay",
+			"When": {"Bookseller Zone Shadow Fix": "true", "HasMod |contains=JefGrizli.RedrawPelicanTown": false}
+		},
+		{
+			"LogName": "Underwater Tree Animation Fix",
+			"Action": "EditImage",
+			"Target": "Maps/spring_island_tilesheet_1, Maps/summer_island_tilesheet_1, Maps/fall_island_tilesheet_1, Maps/winter_island_tilesheet_1",
+			"FromFile": "assets/{{TargetWithoutPath}}_treefix.png",
+			"PatchMode": "Overlay",
+			"Priority": "Early",
+			"ToArea": { "X": 320, "Y": 368, "Width": 32, "Height": 16 },
+			"When": {"Underwater Tree Animation Fix": "true"}
+		},
+		{
+			"LogName": "Underwater Tree Animation Fix Green Fall",
+			"Action": "EditImage",
+			"Target": "Maps/fall_island_tilesheet_1",
+			"FromFile": "assets/{{TargetWithoutPath}}_treefix_green.png",
+			"PatchMode": "Overlay",
+			"Priority": "Early",
+			"ToArea": { "X": 320, "Y": 368, "Width": 32, "Height": 16 },
+			"When": {"Underwater Tree Animation Fix": "true", "GreenFallCompat": "true"},
+			"Update": "OnTimeChange"
+		},
+		{
+			"LogName": "Seeds Spots Fix",
+			"Action": "EditImage",
+			"Target": "LooseSprites/Cursors_1_6",
+			"FromFile": "assets/seedspot.png",
+			"PatchMode": "Overlay",
+			"ToArea": { "X": 160, "Y": 0, "Width": 64, "Height": 16 },
+			"When": {"SeedsSpotsFix": "true"}
 		}
 	]
 }
