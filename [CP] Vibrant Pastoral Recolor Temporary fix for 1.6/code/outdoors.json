@@ -1,0 +1,19 @@
+{
+    "Changes": [
+		{
+			"LogName": "Outdoors",
+			"Action": "EditImage",
+			"Target": "Maps/spring_outdoorsTileSheet2, Maps/spring_outdoorTileSheet_extra, Maps/summer_outdoorsTileSheet2, Maps/summer_outdoorTileSheet_extra, Maps/fall_outdoorsTileSheet2, Maps/fall_outdoorTileSheet_extra, Maps/winter_outdoorsTileSheet2, Maps/winter_outdoorTileSheet_extra, Maps/island_tilesheet_1",
+			"FromFile": "assets/{{TargetWithoutPath}}.png",
+			"PatchMode": "Overlay"
+		},
+		{
+			"LogName": "Outdoors Green Fall",
+			"Action": "EditImage",
+			"Target": "Maps/fall_outdoorTileSheet_extra, Maps/fall_outdoorsTileSheet2",
+			"FromFile": "assets/{{TargetWithoutPath}}_green.png",
+			"PatchMode": "Overlay",
+			"When": {"GreenFallCompat": "true"}
+		}
+    ]
+}

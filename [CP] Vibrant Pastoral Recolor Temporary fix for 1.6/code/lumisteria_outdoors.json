@@ -1,0 +1,34 @@
+{
+    "Changes": [
+        {
+            "LogName": "VPR Lumisteria's Buildings",
+            "Action": "EditImage",
+            "PatchMode": "Overlay",
+            "Target": "Maps/spring_mod_lumisteria_tilesheetsoutdoor_buildings, Maps/summer_mod_lumisteria_tilesheetsoutdoor_buildings, Maps/fall_mod_lumisteria_tilesheetsoutdoor_buildings, Maps/winter_mod_lumisteria_tilesheetsoutdoor_buildings",
+            "FromFile": "assets/lumi/{{TargetWithoutPath}}.png"
+        },
+        {
+            "LogName": "VPR Lumisteria's Decorations",
+            "Action": "EditImage",
+            "PatchMode": "Overlay",
+            "Target": "Maps/spring_mod_lumisteria_tilesheetsoutdoor_decorations, Maps/summer_mod_lumisteria_tilesheetsoutdoor_decorations, Maps/fall_mod_lumisteria_tilesheetsoutdoor_decorations, Maps/winter_mod_lumisteria_tilesheetsoutdoor_decorations",
+            "FromFile": "assets/lumi/{{TargetWithoutPath}}.png"
+        },
+        {
+            "LogName": "VPR Lumisteria's Tiles",
+            "Action": "EditImage",
+            "PatchMode": "Overlay",
+            "Target": "Maps/spring_mod_lumisteria_tilesheetsoutdoor_tiles, Maps/summer_mod_lumisteria_tilesheetsoutdoor_tiles, Maps/fall_mod_lumisteria_tilesheetsoutdoor_tiles, Maps/winter_mod_lumisteria_tilesheetsoutdoor_tiles",
+            "FromFile": "assets/lumi/{{TargetWithoutPath}}.png"
+        },
+        {
+            "LogName": "VPR Lumisteria's Green Fall",
+            "Action": "EditImage",
+            "PatchMode": "Overlay",
+            "Target": "Maps/fall_mod_lumisteria_tilesheetsoutdoor_buildings, Maps/fall_mod_lumisteria_tilesheetsoutdoor_decorations, Maps/fall_mod_lumisteria_tilesheetsoutdoor_tiles",
+            "FromFile": "assets/lumi/{{TargetWithoutPath}}_green.png",
+            "When": {"GreenFallCompat": "true"}
+            
+        }
+    ]
+}

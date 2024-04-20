@@ -103,7 +103,12 @@
 			"Section": "Misc",
 			"Description": "Recolor 1.6 seeds spots to make it more recognizable."
 		},
-
+		"Lumisteria Outdoors": {
+			"AllowValues": "auto, true, false",
+			"Default": "auto",
+			"Section": "Compatibility",
+			"Description": "Experimenting. Recolor Lumisteria's Outdoor Tilesheet to match VPR."
+		},
 		"Force Replace Outdoors": {
 			"AllowValues": "true, false",
 			"Default": "false",
@@ -112,6 +117,18 @@
 		}
 	},
 	"DynamicTokens": [
+		{
+			"Name": "LumiOutdoorCompat",
+			"Value": "{{Lumisteria Outdoors}}"
+		},
+		{
+			"Name": "LumiOutdoorCompat",
+			"Value": "true",
+			"When": {
+				"Lumisteria Outdoors": "auto",
+				"HasMod": "Lumisteria.TtilesheetsOutdoor",
+			}
+		},
 		{
 			"Name": "GreenFallCompat",
 			"Value": "{{Green Fall}}"
@@ -155,40 +172,30 @@
 	"Changes": [
 		// Outdoors
 		{
-			"LogName": "Outdoors",
-			"Action": "EditImage",
-			"Target": "Maps/spring_outdoorsTileSheet2, Maps/spring_outdoorTileSheet_extra, Maps/summer_outdoorsTileSheet2, Maps/summer_outdoorTileSheet_extra, Maps/fall_outdoorsTileSheet2, Maps/fall_outdoorTileSheet_extra, Maps/winter_outdoorsTileSheet2, Maps/winter_outdoorTileSheet_extra, Maps/island_tilesheet_1",
-			"FromFile": "assets/{{TargetWithoutPath}}.png",
-			"PatchMode": "Overlay",
+			"LogName": "Outdoors Include",
+			"Action": "Include",
+			"FromFile": "code/outdoors.json",
 			"When": {"Force Replace Outdoors": "false"}
 		},
 		{
-			"LogName": "Force Outdoors",
-			"Action": "EditImage",
-			"Target": "Maps/spring_outdoorsTileSheet2, Maps/spring_outdoorTileSheet_extra, Maps/summer_outdoorsTileSheet2, Maps/summer_outdoorTileSheet_extra, Maps/fall_outdoorsTileSheet2, Maps/fall_outdoorTileSheet_extra, Maps/winter_outdoorsTileSheet2, Maps/winter_outdoorTileSheet_extra, Maps/island_tilesheet_1",
-			"FromFile": "assets/{{TargetWithoutPath}}.png",
-			"PatchMode": "Overlay",
-			"Priority": "Default+1",
+			"LogName": "Force Outdoors Include",
+			"Action": "Include",
+			"FromFile": "code/force_outdoors.json",
 			"When": {"Force Replace Outdoors": "true"}
 		},
+		// Compatibility
 		{
-			"LogName": "Force Outdoors Green Fall",
-			"Action": "EditImage",
-			"Target": "Maps/fall_outdoorTileSheet_extra, Maps/fall_outdoorsTileSheet2",
-			"FromFile": "assets/{{TargetWithoutPath}}_green.png",
-			"PatchMode": "Overlay",
-			"When": {"GreenFallCompat": "true", "Force Replace Outdoors": "false"},
-			"Update": "OnTimeChange"
+			"LogName": "Lumisteria Outdoors Include",
+			"Action": "Include",
+			"FromFile": "code/lumisteria_outdoors.json",
+			"When": {"LumiOutdoorCompat": "true"}
 		},
+		// Interior
 		{
-			"LogName": "Force Outdoors Green Fall",
-			"Action": "EditImage",
-			"Target": "Maps/fall_outdoorTileSheet_extra, Maps/fall_outdoorsTileSheet2",
-			"FromFile": "assets/{{TargetWithoutPath}}_green.png",
-			"PatchMode": "Overlay",
-			"Priority": "Default+1",
-			"When": {"GreenFallCompat": "true", "Force Replace Outdoors": "true"},
-			"Update": "OnTimeChange"
+			"LogName": "Include Door Mismatching Fix",
+			"Action": "Include",
+			"FromFile": "code/door.json",
+			"When": {"Door Mismatching Color Fix": "true"}
 		},
 		{
 			"LogName": "Derby Grass Fix",
@@ -207,12 +214,35 @@
 			"ToArea": { "X": 288, "Y": 1104, "Width": 32, "Height": 32 }
 		},
 		{
-			"LogName": "Fix that dummy shadow winter tile",
+			"LogName": "Shadow Winter Tile",
 			"Action": "EditImage",
 			"Target": "Maps/winter_outdoorsTileSheet2",
 			"FromFile": "assets/winter_tile_fix.png",
 			"PatchMode": "Replace",
 			"ToArea": { "X": 48, "Y": 80, "Width": 16, "Height": 16 }
+		},
+		{
+			"LogName": "Mermaid Sand Fix",
+			"Action": "EditImage",
+			"Target": "Maps/island_tilesheet_2",
+			"FromFile": "assets/island_tilesheet_2_sand.png",
+			"PatchMode": "Overlay",
+			"ToArea": { "X": 48, "Y": 0, "Width": 96, "Height": 16 }
+		},
+		{
+			"LogName": "Camel Sand Fix",
+			"Action": "EditImage",
+			"Target": "LooseSprites/temporary_sprites_1",
+			"FromFile": "assets/temporary_sprites_1.png",
+			"PatchMode": "Overlay",
+		},
+		{
+			"LogName": "Mine Fix 1",
+			"Action": "EditImage",
+			"Target": "Maps/Mines/mine_frost_dark",
+			"FromFile": "assets/Mines/mine_frost_dark.png",
+			"PatchMode": "Replace",
+			"ToArea": { "X": 0, "Y": 128, "Width": 96, "Height": 16 }
 		},
 		{
 			"LogName": "Underwater Tile Opaque and Semi",
@@ -232,7 +262,7 @@
 			"PatchMode": "Replace",
 			"When": {"Blue Grass Type|contains=none": "false", "HasFile:{{FromFile}}": "true"}
 		},
-		// Interior
+		
 		{
 			"LogName": "Town Interior Fix",
 			"Action": "EditImage",
@@ -259,48 +289,7 @@
 			"PatchMode": "Overlay",
 			"When": {"Farm House Upgrade Interior Fix": "true"}
 		},
-		{
-            "LogName": "Door Mismatching Color Fix 1",
-            "Action": "EditImage",
-            "Target": "Maps/townInterior",
-            "FromFile": "assets/door1.png",
-            "PatchMode": "Replace",
-            "ToArea": {
-                "X": 384,
-                "Y": 16,
-                "Width": 16,
-                "Height": 48
-            },
-			"When": {"Door Mismatching Color Fix": "true"}
-        },
-		{
-            "LogName": "Door Mismatching Color Fix 2",
-            "Action": "EditImage",
-            "Target": "Maps/townInterior",
-            "FromFile": "assets/door2.png",
-            "PatchMode": "Replace",
-            "ToArea": {
-                "X": 96,
-                "Y": 384,
-                "Width": 16,
-                "Height": 48
-            },
-			"When": {"Door Mismatching Color Fix": "true"}
-        },
-        {
-            "LogName": "Door Mismatching Color Fix 2",
-            "Action": "EditImage",
-            "Target": "Maps/townInterior",
-            "FromFile": "assets/door3.png",
-            "PatchMode": "Replace",
-            "ToArea": {
-                "X": 384,
-                "Y": 368,
-                "Width": 32,
-                "Height": 48
-            },
-			"When": {"Door Mismatching Color Fix": "true"}
-        },
+		
 		// Mini Map
 		{
 			"LogName": "Map Fix",
@@ -331,7 +320,7 @@
 		{
 			"LogName": "Mossy Tree Fix",
 			"Action": "EditImage",
-			"Target": "TerrainFeatures/tree1_spring, TerrainFeatures/tree1_summer, TerrainFeatures/tree1_fall, TerrainFeatures/tree2_spring, TerrainFeatures/tree2_summer, TerrainFeatures/tree2_fall, TerrainFeatures/tree3_spring, TerrainFeatures/tree3_summer, TerrainFeatures/tree3_fall, TerrainFeatures/tree1_winter, TerrainFeatures/tree2_winter",
+			"Target": "TerrainFeatures/tree1_spring, TerrainFeatures/tree1_summer, TerrainFeatures/tree1_fall, TerrainFeatures/tree2_spring, TerrainFeatures/tree2_summer, TerrainFeatures/tree2_fall, TerrainFeatures/tree3_spring, TerrainFeatures/tree3_summer, TerrainFeatures/tree3_fall, TerrainFeatures/tree1_winter, TerrainFeatures/tree2_winter, TerrainFeatures/mushroom_tree, TerrainFeatures/mystic_tree",
 			"FromFile": "assets/{{TargetWithoutPath}}.png",
 			"PatchMode": "Overlay",
 			"When": {"Mossy Tree Fix": "true"}
@@ -346,6 +335,17 @@
 				"Season": "Summer",
 				"Mossy Tree Fix": "true"
 			}
+		},
+		{
+			"LogName": "Dec Tree Fix",
+			"Action": "EditImage",
+			"Target": "Maps/spring_outdoorsTileSheet, Maps/summer_outdoorsTileSheet, Maps/fall_outdoorsTileSheet",
+			"FromFile": "assets/{{TargetWithoutPath}}_decTree.png",
+			"PatchMode": "Replace",
+			"ToArea": {
+				"X": 96, "Y": 0, "Width": 64, "Height": 64
+			},
+			"When": {"Mossy Tree Fix": "true"}
 		},
 		{
 			"LogName": "Green Rain Tree Fix",
